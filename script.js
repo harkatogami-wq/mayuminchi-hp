@@ -44,6 +44,22 @@ const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 // 貸切スペースでのイベント。regularOpen: その日にまゆみんちの通常営業（テイクアウト等）も一緒に行うか
 const EVENTS = [
   {
+    date: "2026-09-08",
+    title: "米粉の抹茶ケーキレッスン（満席）",
+    host: "宮尾みつみ",
+    time: "10:30〜",
+    link: "https://lin.ee/93ksoYY",
+    regularOpen: false,
+  },
+  {
+    date: "2026-09-16",
+    title: "米粉パン販売",
+    host: "宮尾みつみ",
+    time: "",
+    link: "https://lin.ee/93ksoYY",
+    regularOpen: true,
+  },
+  {
     date: "2026-09-29",
     title: "Half & First Birthday Day（1歳・6ヶ月の記念日イベント）",
     host: "とがみ はるか × いでさわ まりこ",
@@ -166,7 +182,7 @@ if (calMonthEl && calGridEl) {
       card.innerHTML = `
         <span class="ev-date">${y}.${m}.${d}（${weekdayLabel}）</span>
         <h4 class="ev-title">${e.title}</h4>
-        <p class="ev-meta">主催：${e.host}<br>${e.time}</p>
+        <p class="ev-meta">主催：${e.host}${e.time ? "<br>" + e.time : ""}</p>
         ${e.link ? '<span class="ev-link">詳細を見る →</span>' : ""}
       `;
       eventListEl.appendChild(card);
