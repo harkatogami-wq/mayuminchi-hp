@@ -38,10 +38,24 @@ const OPEN_DATES_BY_MONTH = {
 // 臨時休業（本来は営業日だが休む日）は"YYYY-MM-DD"で追加してください。
 const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 
+// 貸切スペースでのイベント。regularOpen: その日にまゆみんちの通常営業（テイクアウト等）も一緒に行うか
+const EVENTS = [
+  {
+    date: "2026-09-29",
+    title: "Half & First Birthday Day（1歳・6ヶ月の記念日イベント）",
+    host: "とがみ はるか × いでさわ まりこ",
+    time: "10:00〜11:30 1歳の記念日／13:00〜14:30 6ヶ月の記念日",
+    link: "https://half-first-birthday-lp.pages.dev",
+    regularOpen: false,
+  },
+];
+const EVENTS_BY_DATE = Object.fromEntries(EVENTS.map((e) => [e.date, e]));
+
 const calMonthEl = document.getElementById("calMonth");
 const calGridEl = document.getElementById("calGrid");
 const calPrevBtn = document.getElementById("calPrev");
 const calNextBtn = document.getElementById("calNext");
+const eventListEl = document.getElementById("eventList");
 
 if (calMonthEl && calGridEl) {
   const today = new Date();
@@ -68,16 +82,24 @@ if (calMonthEl && calGridEl) {
     const monthOpenDays = OPEN_DATES_BY_MONTH[monthKey];
 
     for (let d = 1; d <= daysInMonth; d++) {
-      const cell = document.createElement("div");
       const weekday = new Date(viewYear, viewMonth, d).getDay();
       const dateKey = toDateKey(viewYear, viewMonth, d);
+      const event = EVENTS_BY_DATE[dateKey];
       const isClosedOverride = CLOSED_DATES.includes(dateKey);
       const isWeekdayCandidate = !!OPEN_WEEKDAYS[weekday];
-      const isOpen = monthOpenDays
+      let isOpen = monthOpenDays
         ? monthOpenDays.includes(d) && !isClosedOverride
         : isWeekdayCandidate && !isClosedOverride;
+      if (event && !event.regularOpen) isOpen = false;
 
-      cell.className = "cal-day " + (isOpen ? "is-open" : "is-closed");
+      const cell = document.createElement(event?.link ? "a" : "div");
+      if (event?.link) {
+        cell.href = event.link;
+        cell.target = "_blank";
+        cell.rel = "noopener";
+      }
+      cell.className =
+        "cal-day " + (isOpen ? "is-open " : "is-closed ") + (event ? "is-event" : "");
       if (
         viewYear === today.getFullYear() &&
         viewMonth === today.getMonth() &&
@@ -93,11 +115,48 @@ if (calMonthEl && calGridEl) {
 
       const tag = document.createElement("span");
       tag.className = "tag";
-      tag.textContent = isOpen ? OPEN_WEEKDAYS[weekday] : isClosedOverride ? "臨時休業" : "定休日";
+      tag.textContent = event
+        ? "イベント"
+        : isOpen
+        ? OPEN_WEEKDAYS[weekday]
+        : isClosedOverride
+        ? "臨時休業"
+        : "定休日";
       cell.appendChild(tag);
 
       calGridEl.appendChild(cell);
     }
+  }
+
+  function renderEventList() {
+    if (!eventListEl) return;
+    const upcoming = EVENTS.filter((e) => e.date >= toDateKey(today.getFullYear(), today.getMonth(), today.getDate()))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    if (!upcoming.length) {
+      eventListEl.innerHTML = '<p class="event-empty">現在、開催予定のイベントはありません。</p>';
+      return;
+    }
+
+    eventListEl.innerHTML = "";
+    upcoming.forEach((e) => {
+      const [y, m, d] = e.date.split("-").map(Number);
+      const weekdayLabel = ["日", "月", "火", "水", "木", "金", "土"][new Date(y, m - 1, d).getDay()];
+      const card = document.createElement(e.link ? "a" : "div");
+      card.className = "event-card";
+      if (e.link) {
+        card.href = e.link;
+        card.target = "_blank";
+        card.rel = "noopener";
+      }
+      card.innerHTML = `
+        <span class="ev-date">${y}.${m}.${d}（${weekdayLabel}）</span>
+        <h4 class="ev-title">${e.title}</h4>
+        <p class="ev-meta">主催：${e.host}<br>${e.time}</p>
+        ${e.link ? '<span class="ev-link">詳細を見る →</span>' : ""}
+      `;
+      eventListEl.appendChild(card);
+    });
   }
 
   calPrevBtn?.addEventListener("click", () => {
@@ -118,6 +177,7 @@ if (calMonthEl && calGridEl) {
   });
 
   renderCalendar();
+  renderEventList();
 }
 
 // ===== スクロールで表示 =====

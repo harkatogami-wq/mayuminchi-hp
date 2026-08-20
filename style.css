@@ -9,6 +9,9 @@
   --red: #b5432f;
   --red-deep: #96331f;
   --red-glow: rgba(181,67,47,.14);
+  --event: #6b7d4f;
+  --event-deep: #566a3d;
+  --event-glow: rgba(107,125,79,.14);
   --badge-fg: #fff8ef;
 }
 :root:not([data-theme="light"]){
@@ -23,6 +26,9 @@
     --red: #e2775f;
     --red-deep: #ef8a72;
     --red-glow: rgba(226,119,95,.18);
+    --event: #9dab7c;
+    --event-deep: #b3c095;
+    --event-glow: rgba(157,171,124,.18);
     --badge-fg: #221812;
   }
 }
@@ -37,6 +43,9 @@
   --red: #e2775f;
   --red-deep: #ef8a72;
   --red-glow: rgba(226,119,95,.18);
+  --event: #9dab7c;
+  --event-deep: #b3c095;
+  --event-glow: rgba(157,171,124,.18);
   --badge-fg: #221812;
 }
 
@@ -209,6 +218,7 @@ hr.hair{ border:none; border-top:1px solid var(--line); margin:0; }
 .cal-legend .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
 .dot-open{ background:var(--red); }
 .dot-closed{ background:var(--brown-faint); opacity:.5; }
+.dot-event{ background:var(--event-deep); }
 
 .cal-card{
   background:var(--paper); border:1px solid var(--line); padding:24px 20px 28px; max-width:520px; margin:0 auto;
@@ -239,10 +249,36 @@ hr.hair{ border:none; border-top:1px solid var(--line); margin:0; }
 .cal-day.is-closed{ color:var(--brown-faint); }
 .cal-day.is-closed .num{ opacity:.5; }
 .cal-day.is-today{ outline:1.5px solid var(--red-deep); outline-offset:-1.5px; }
+.cal-day.is-event{ background:var(--event-glow); }
+.cal-day.is-event .tag{ color:var(--event-deep); }
+.cal-day.is-event.is-open{
+  background:linear-gradient(135deg, var(--event-glow) 50%, var(--red-glow) 50%);
+}
+a.cal-day{ text-decoration:none; cursor:pointer; }
+a.cal-day:hover{ opacity:.8; }
 @media (max-width:480px){
   .cal-card{ padding:18px 10px 22px; }
   .cal-day .tag{ display:none; }
 }
+
+.event-notice{ margin-top:40px; text-align:center; }
+.event-notice-title{ font-family:"Shippori Mincho",serif; font-weight:700; font-size:16px; margin:0 0 6px; }
+.event-notice-sub{ font-size:12px; color:var(--brown-soft); margin:0 0 22px; }
+.event-list{ display:flex; flex-direction:column; gap:14px; max-width:520px; margin:0 auto; text-align:left; }
+.event-card{
+  display:flex; flex-direction:column; gap:8px;
+  background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--event-deep);
+  padding:18px 20px;
+}
+.event-card .ev-date{
+  font-family:"Cormorant Garamond",serif; font-weight:600; font-size:13px; color:var(--event-deep); letter-spacing:.03em;
+}
+.event-card .ev-title{ font-family:"Shippori Mincho",serif; font-weight:700; font-size:15px; margin:0; color:var(--brown); }
+.event-card .ev-meta{ font-size:12px; color:var(--brown-soft); line-height:1.7; }
+.event-card .ev-link{
+  align-self:flex-start; margin-top:4px; font-size:12px; font-weight:700; color:var(--red-deep); text-decoration:underline;
+}
+.event-empty{ font-size:12.5px; color:var(--brown-faint); text-align:center; }
 
 /* ---------- gallery ---------- */
 .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
