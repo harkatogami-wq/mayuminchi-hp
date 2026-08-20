@@ -36,7 +36,7 @@ const OPEN_DATES_BY_MONTH = {
 };
 
 // 臨時休業（本来は営業日だが休む日）は"YYYY-MM-DD"で追加してください。
-const CLOSED_DATES = [];
+const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 
 const calMonthEl = document.getElementById("calMonth");
 const calGridEl = document.getElementById("calGrid");
