@@ -222,6 +222,19 @@ hr.hair{ border:none; border-top:1px solid var(--line); margin:0; }
 .access-note{
   margin-top:16px; font-size:11.5px; color:var(--brown-faint); text-align:center;
 }
+.map-link{
+  display:inline-flex; align-items:center; gap:5px; margin-top:8px;
+  font-size:12px; font-weight:600; color:var(--red-deep); text-decoration:none;
+}
+.map-link svg{ width:13px; height:13px; flex-shrink:0; }
+.map-link:hover{ color:var(--red); }
+.map-embed{
+  margin-top:20px; border:1px solid var(--line); overflow:hidden;
+  background:var(--paper);
+}
+.map-embed iframe{
+  width:100%; aspect-ratio:16/9; border:0; display:block; filter:grayscale(.15) contrast(1.02);
+}
 
 /* ---------- cta ---------- */
 .cta{ text-align:center; }
