@@ -246,8 +246,7 @@ hr.hair{ border:none; border-top:1px solid var(--line); margin:0; }
 .cal-day .num{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:14px; }
 .cal-day .tag{ font-size:8.5px; color:var(--red-deep); font-weight:700; letter-spacing:.02em; }
 .cal-day.is-open{ background:var(--red-glow); }
-.cal-day.is-closed{ color:var(--brown-faint); }
-.cal-day.is-closed .num{ opacity:.5; }
+.cal-day.is-closed{ color:var(--brown-soft); }
 .cal-day.is-today{ outline:1.5px solid var(--red-deep); outline-offset:-1.5px; }
 .cal-day.is-event{ background:var(--event-glow); }
 .cal-day.is-event .tag{ color:var(--event-deep); }
