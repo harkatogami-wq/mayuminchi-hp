@@ -130,7 +130,7 @@ if (calMonthEl && calGridEl) {
       const tagShort = document.createElement("span");
       tagShort.className = "tag tag-short";
       tagShort.textContent = event
-        ? "行事"
+        ? "イベント"
         : isOpen
         ? OPEN_WEEKDAYS_SHORT[weekday]
         : isClosedOverride
