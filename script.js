@@ -41,11 +41,14 @@ const OPEN_DATES_BY_MONTH = {
 // 臨時休業（本来は営業日だが休む日）は"YYYY-MM-DD"で追加してください。
 const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 
-// 貸切スペースでのイベント。regularOpen: その日にまゆみんちの通常営業（テイクアウト等）も一緒に行うか
+// 貸切スペースでのイベント。
+// title: イベントのお知らせ欄に出す正式名称／calLabel: カレンダーのマスに収まる短い名前(4〜5文字が目安)
+// regularOpen: その日にまゆみんちの通常営業（テイクアウト等）も一緒に行うか
 const EVENTS = [
   {
     date: "2026-09-08",
     title: "米粉の抹茶ケーキレッスン（満席）",
+    calLabel: "抹茶ケーキ",
     host: "宮尾みつみ",
     time: "10:30〜",
     link: "https://lin.ee/93ksoYY",
@@ -54,6 +57,7 @@ const EVENTS = [
   {
     date: "2026-09-16",
     title: "米粉パン販売",
+    calLabel: "パン販売",
     host: "宮尾みつみ",
     time: "",
     link: "https://lin.ee/93ksoYY",
@@ -62,6 +66,7 @@ const EVENTS = [
   {
     date: "2026-09-29",
     title: "Half & First Birthday Day（1歳・6ヶ月の記念日イベント）",
+    calLabel: "バースデー会",
     host: "とがみ はるか × いでさわ まりこ",
     time: "10:00〜11:30 1歳の記念日／13:00〜14:30 6ヶ月の記念日",
     link: "https://half-first-birthday-lp.pages.dev",
@@ -135,7 +140,7 @@ if (calMonthEl && calGridEl) {
       const tag = document.createElement("span");
       tag.className = "tag tag-full";
       tag.textContent = event
-        ? "イベント"
+        ? event.calLabel || "イベント"
         : isOpen
         ? OPEN_WEEKDAYS[weekday]
         : isClosedOverride
@@ -146,7 +151,7 @@ if (calMonthEl && calGridEl) {
       const tagShort = document.createElement("span");
       tagShort.className = "tag tag-short";
       tagShort.textContent = event
-        ? "イベント"
+        ? event.calLabel || "イベント"
         : isOpen
         ? OPEN_WEEKDAYS_SHORT[weekday]
         : isClosedOverride
