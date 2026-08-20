@@ -25,8 +25,17 @@ if (navToggle && nav) {
 }
 
 // ===== 営業カレンダー =====
-// 基本の営業日は月・水・金。臨時休業がある日はCLOSED_DATESに"YYYY-MM-DD"で追加してください。
+// その日に出るメニューは曜日で決まる（月＝マフィン／ビビンパ丼、水＝お惣菜パン／豚丼、金＝お惣菜／Mayuデリ弁当）
 const OPEN_WEEKDAYS = { 1: "米粉マフィン／ビビンパ丼", 3: "お惣菜パン／豚丼", 5: "お惣菜／Mayuデリ弁当" };
+
+// 月ごとの実際の営業日（日にちの配列）。ここに指定した月は、この日にちだけが営業日になります。
+// 例："2026-09": [2, 4, 7, 9, 14, 16, 18, 25, 28, 30]
+// まだ指定していない月は、月・水・金をすべて営業日として仮表示します（予定が決まったらここに追加してください）。
+const OPEN_DATES_BY_MONTH = {
+  "2026-09": [2, 4, 7, 9, 14, 16, 18, 25, 28, 30],
+};
+
+// 臨時休業（本来は営業日だが休む日）は"YYYY-MM-DD"で追加してください。
 const CLOSED_DATES = [];
 
 const calMonthEl = document.getElementById("calMonth");
@@ -55,12 +64,18 @@ if (calMonthEl && calGridEl) {
       calGridEl.appendChild(empty);
     }
 
+    const monthKey = `${viewYear}-${String(viewMonth + 1).padStart(2, "0")}`;
+    const monthOpenDays = OPEN_DATES_BY_MONTH[monthKey];
+
     for (let d = 1; d <= daysInMonth; d++) {
       const cell = document.createElement("div");
       const weekday = new Date(viewYear, viewMonth, d).getDay();
       const dateKey = toDateKey(viewYear, viewMonth, d);
       const isClosedOverride = CLOSED_DATES.includes(dateKey);
-      const isOpen = OPEN_WEEKDAYS[weekday] && !isClosedOverride;
+      const isWeekdayCandidate = !!OPEN_WEEKDAYS[weekday];
+      const isOpen = monthOpenDays
+        ? monthOpenDays.includes(d) && !isClosedOverride
+        : isWeekdayCandidate && !isClosedOverride;
 
       cell.className = "cal-day " + (isOpen ? "is-open" : "is-closed");
       if (
