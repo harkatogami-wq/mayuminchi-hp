@@ -287,12 +287,12 @@ a.cal-day:hover{ opacity:.8; }
 
 /* ---------- photo booth ---------- */
 .pb-slideshow{
-  position:relative; width:100%; max-width:460px; aspect-ratio:4/3; margin:0 auto;
+  position:relative; width:100%; max-width:420px; aspect-ratio:2/3; margin:0 auto;
   overflow:hidden; border:1px solid var(--line); background:var(--cream-deep);
   box-shadow:0 22px 44px -20px rgba(76,58,44,.35);
 }
 .pb-slide{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
   opacity:0; animation:pbFade 24s ease-in-out infinite;
 }
 .pb-slide:nth-child(1){ animation-delay:0s; }
