@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mayuminchi-hp.pages.dev/sitemap.xml
