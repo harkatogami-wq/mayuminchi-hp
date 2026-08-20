@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mayuminchi｜おうちごはんとやさしいおやつ</title>
+<meta name="description" content="さいたま市大宮区にある「mayuminchi」の公式サイト。日替わりスープ・お惣菜パン・丼もの・Mayuデリ弁当のテイクアウト、完全予約制のランチプレートをご案内しています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a class="brand" href="#top">
+      <img src="images/logo.png" alt="mayuminchi ロゴ">
+      <span>mayuminchi</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav">
+      <a href="#about">まゆみんちについて</a>
+      <a href="#menu">メニュー</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+      <a class="nav-cta" data-link="line" href="#">ご予約はこちら</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+
+  <section class="hero">
+    <img class="hero-logo" src="images/logo.png" alt="mayuminchi ロゴ">
+    <p class="hero-eyebrow en">Home Kitchen &amp; Deli</p>
+    <h1 class="hero-title">
+      毎日のごはんに、<br>
+      <span class="accent">ほっとするひと皿</span>を。
+    </h1>
+    <p class="hero-sub">
+      日替わりのスープやパン、丼もの、Mayuデリ弁当。<br>
+      さいたま市大宮区のおうちキッチンから、<br class="hero-sub-br">
+      季節の食材をたっぷり使ったやさしい味をお届けします。
+    </p>
+
+    <div class="hero-photos">
+      <figure><img src="images/photo-soup.jpg" alt="日替わりスープとプチパンセット"></figure>
+      <figure><img src="images/photo-plate.jpg" alt="Mayuデリランチプレート"></figure>
+      <figure><img src="images/photo-muffin.jpg" alt="米粉マフィン各種"></figure>
+    </div>
+
+    <div class="hero-buttons">
+      <a class="btn btn-primary" data-link="line" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.94 2 10.8c0 3.4 2.4 6.4 5.9 7.9-.26.94-.94 3.4-1.08 3.93-.17.65.24.64.5.47.2-.14 3.3-2.24 4.65-3.15.66.09 1.34.14 2.03.14 5.52 0 10-3.94 10-8.8S17.52 2 12 2z"/></svg>
+        LINEで予約する
+      </a>
+      <a class="btn btn-outline" data-link="instagram" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+        Instagram
+      </a>
+    </div>
+  </section>
+
+  <section id="about" class="about reveal">
+    <div class="section-head">
+      <p class="section-tag en">About</p>
+      <h2 class="section-title">まゆみんちについて</h2>
+    </div>
+    <p class="about-copy">
+      mayuminchi（まゆみんち）は、さいたま市大宮区にあるおうちキッチンです。<br>
+      日替わりで内容が変わるスープやパン、丼ものを中心に、季節の食材をたっぷり使った
+      あたたかいごはんをテイクアウトでお届けしています。<br>
+      完全予約制のランチプレートやキッズメニューでは、8名前後が入れる貸切スペースもご利用いただけます。
+    </p>
+    <div class="about-points">
+      <div class="about-point">
+        <div class="icon">🍲</div>
+        <p class="t">日替わりのお楽しみ</p>
+        <p class="d">曜日ごとに内容が変わるスープ・パン・丼もの。行くたびに違う出会いがあります。</p>
+      </div>
+      <div class="about-point">
+        <div class="icon">🥗</div>
+        <p class="t">季節の食材をたっぷり</p>
+        <p class="d">Mayuデリ弁当は、お肉・お魚・自家製春巻きに旬のお惣菜を添えて。</p>
+      </div>
+      <div class="about-point">
+        <div class="icon">👨‍👩‍👧</div>
+        <p class="t">予約制の貸切スペース</p>
+        <p class="d">大人8名前後が入れる空間で、ゆったりとランチプレートを楽しめます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="reveal">
+    <div class="section-head">
+      <p class="section-tag en">Menu</p>
+      <h2 class="section-title">メニュー</h2>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head">
+        <span class="en">Main</span>
+        <h3>メインメニュー</h3>
+      </div>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap"><span class="name">日替わりスープとプチパンセット</span></div>
+            <span class="price">¥600〜</span>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap"><span class="name">バスクチーズケーキ</span></div>
+            <span class="price">¥300</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head">
+        <span class="en">Daily</span>
+        <h3>日替わりメニュー</h3>
+      </div>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap">
+              <span class="day-tag">月曜限定</span>
+              <span class="name">米粉マフィン</span>
+            </div>
+            <span class="price">¥300〜</span>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap">
+              <span class="day-tag">水曜限定</span>
+              <span class="name">お惣菜パン 各種</span>
+            </div>
+            <span class="price">¥200〜</span>
+          </div>
+        </li>
+      </ul>
+      <p class="menu-hint">※米粉マフィンはご予約が確実です。種類と数はお問合せの上、2日前までにご連絡ください。</p>
+    </div>
+
+    <div class="menu-group">
+      <div class="menu-group-head">
+        <span class="en">Rice Bowl</span>
+        <h3>日替わりごはん</h3>
+      </div>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap">
+              <span class="day-tag">月曜限定</span>
+              <span class="name">特製ビビンパ丼</span>
+            </div>
+            <span class="price">¥900</span>
+          </div>
+        </li>
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap">
+              <span class="day-tag">水曜限定</span>
+              <span class="name">醤油麹の豚丼</span>
+            </div>
+            <span class="price">¥800〜</span>
+          </div>
+          <span class="note">並 ¥800／1.5倍 ¥1,150／2倍 ¥1,500</span>
+        </li>
+        <li class="menu-item">
+          <div class="menu-item-top">
+            <div class="name-wrap">
+              <span class="day-tag">金曜限定</span>
+              <span class="name">Mayuデリ弁当</span>
+            </div>
+            <span class="price">¥900</span>
+          </div>
+          <span class="note">お肉・お魚・自家製春巻き＋お惣菜（筑前煮／ごま和え／マリネなど）。内容は日替わりです。</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-reserve">
+      <h3>完全予約制メニュー</h3>
+      <p>大人8名前後お入りいただける貸切スペースをご利用いただけます。</p>
+      <ul class="reserve-menu-list">
+        <li><span>Mayuデリランチプレート（プチデザート・ワンドリンク付き）</span><span class="price">¥1,600</span></li>
+        <li><span>キッズBOX</span><span class="price">¥500</span></li>
+        <li><span>キッズプレート</span><span class="price">¥500</span></li>
+      </ul>
+      <a class="btn btn-primary" data-link="line" href="#" style="background:var(--badge-fg);color:var(--red-deep);border-color:var(--badge-fg);">
+        予約について問い合わせる
+      </a>
+    </div>
+  </section>
+
+  <section id="gallery" class="reveal">
+    <div class="section-head">
+      <p class="section-tag en">Gallery</p>
+      <h2 class="section-title">まゆみんちのごはん</h2>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <img src="images/photo-soup.jpg" alt="日替わりスープ 2種">
+        <figcaption>Daily Soup</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/photo-plate.jpg" alt="Mayuデリランチプレート">
+        <figcaption>Deli Plate</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/photo-muffin.jpg" alt="米粉マフィン各種">
+        <figcaption>Rice-flour Muffins</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="access" class="access reveal">
+    <div class="section-head">
+      <p class="section-tag en">Access</p>
+      <h2 class="section-title">アクセス・ご利用について</h2>
+    </div>
+    <div class="access-grid">
+      <div class="access-row">
+        <span class="k">ADDRESS</span>
+        <span class="v">埼玉県さいたま市大宮区北袋町1-220-8</span>
+      </div>
+      <div class="access-row">
+        <span class="k">STYLE</span>
+        <span class="v">テイクアウト販売＋予約制ランチ
+          <small>日替わりメニューは店頭でのテイクアウト販売、Mayuデリランチプレート・キッズメニューは完全予約制です。</small>
+        </span>
+      </div>
+      <div class="access-row">
+        <span class="k">SPACE</span>
+        <span class="v">大人8名前後の貸切スペースあり
+          <small>ランチプレートのご利用時にご案内しています。</small>
+        </span>
+      </div>
+      <div class="access-row">
+        <span class="k">SNS</span>
+        <span class="v"><a data-link="instagram" href="#" style="text-decoration:underline;">@oideyo_mayuminchi</a></span>
+      </div>
+    </div>
+    <p class="access-note">営業日・お取り置きの状況はLINE・Instagramでお知らせしています。ご来店前にご確認ください。</p>
+  </section>
+
+  <section class="cta reveal">
+    <h2 class="cta-title">ご予約・お問い合わせ</h2>
+    <p class="cta-copy">
+      Mayuデリランチプレートのご予約、米粉マフィンのお取り置き、貸切スペースのご相談などは
+      公式LINEからお気軽にどうぞ🌸
+    </p>
+    <div class="hero-buttons">
+      <a class="btn btn-primary" data-link="line" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.94 2 10.8c0 3.4 2.4 6.4 5.9 7.9-.26.94-.94 3.4-1.08 3.93-.17.65.24.64.5.47.2-.14 3.3-2.24 4.65-3.15.66.09 1.34.14 2.03.14 5.52 0 10-3.94 10-8.8S17.52 2 12 2z"/></svg>
+        公式LINEを友だち追加
+      </a>
+      <a class="btn btn-outline" data-link="instagram" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+        Instagramを見る
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p class="mark en">mayuminchi</p>
+  <div class="foot-links">
+    <a data-link="line" href="#">LINE</a>
+    <a data-link="instagram" href="#">Instagram</a>
+    <a href="#top">ページトップへ</a>
+  </div>
+  <p class="copy">© mayuminchi</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
