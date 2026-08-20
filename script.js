@@ -27,6 +27,8 @@ if (navToggle && nav) {
 // ===== 営業カレンダー =====
 // その日に出るメニューは曜日で決まる（月＝マフィン／ビビンパ丼、水＝お惣菜パン／豚丼、金＝お惣菜／Mayuデリ弁当）
 const OPEN_WEEKDAYS = { 1: "米粉マフィン／ビビンパ丼", 3: "お惣菜パン／豚丼", 5: "お惣菜／Mayuデリ弁当" };
+// スマホの狭いマスに収まる短縮表示（曜日ごと）
+const OPEN_WEEKDAYS_SHORT = { 1: "マフィン", 3: "豚丼", 5: "お惣菜" };
 
 // 月ごとの実際の営業日（日にちの配列）。ここに指定した月は、この日にちだけが営業日になります。
 // 例："2026-09": [2, 4, 7, 9, 14, 16, 18, 25, 28, 30]
@@ -114,7 +116,7 @@ if (calMonthEl && calGridEl) {
       cell.appendChild(num);
 
       const tag = document.createElement("span");
-      tag.className = "tag";
+      tag.className = "tag tag-full";
       tag.textContent = event
         ? "イベント"
         : isOpen
@@ -123,6 +125,17 @@ if (calMonthEl && calGridEl) {
         ? "臨時休業"
         : "定休日";
       cell.appendChild(tag);
+
+      const tagShort = document.createElement("span");
+      tagShort.className = "tag tag-short";
+      tagShort.textContent = event
+        ? "行事"
+        : isOpen
+        ? OPEN_WEEKDAYS_SHORT[weekday]
+        : isClosedOverride
+        ? "休業"
+        : "休み";
+      cell.appendChild(tagShort);
 
       calGridEl.appendChild(cell);
     }

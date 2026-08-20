@@ -244,9 +244,11 @@ hr.hair{ border:none; border-top:1px solid var(--line); margin:0; }
 }
 .cal-day.empty{ visibility:hidden; }
 .cal-day .num{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:14px; }
-.cal-day .tag{ font-size:8.5px; color:var(--red-deep); font-weight:700; letter-spacing:.02em; }
+.cal-day .tag{ font-size:8.5px; color:var(--red-deep); font-weight:700; letter-spacing:.02em; text-align:center; }
+.cal-day .tag-short{ display:none; }
 .cal-day.is-open{ background:var(--red-glow); }
 .cal-day.is-closed{ color:var(--brown-soft); }
+.cal-day.is-closed .tag{ color:var(--brown-soft); }
 .cal-day.is-today{ outline:1.5px solid var(--red-deep); outline-offset:-1.5px; }
 .cal-day.is-event{ background:var(--event-glow); }
 .cal-day.is-event .tag{ color:var(--event-deep); }
@@ -257,7 +259,11 @@ a.cal-day{ text-decoration:none; cursor:pointer; }
 a.cal-day:hover{ opacity:.8; }
 @media (max-width:480px){
   .cal-card{ padding:18px 10px 22px; }
-  .cal-day .tag{ display:none; }
+  .cal-grid{ gap:3px; }
+  .cal-day{ font-size:11px; gap:1px; }
+  .cal-day .num{ font-size:13px; }
+  .cal-day .tag-full{ display:none; }
+  .cal-day .tag-short{ display:block; font-size:8px; }
 }
 
 .event-notice{ margin-top:40px; text-align:center; }
