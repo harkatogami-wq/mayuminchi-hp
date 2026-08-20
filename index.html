@@ -72,6 +72,7 @@
     <nav id="nav">
       <a href="#about">まゆみんちについて</a>
       <a href="#menu">メニュー</a>
+      <a href="#calendar">営業カレンダー</a>
       <a href="#gallery">ギャラリー</a>
       <a href="#access">アクセス</a>
       <a class="nav-cta" data-link="line" href="#">ご予約はこちら</a>
@@ -256,6 +257,29 @@
         予約について問い合わせる
       </a>
     </div>
+  </section>
+
+  <section id="calendar" class="calendar reveal">
+    <div class="section-head">
+      <p class="section-tag en">Calendar</p>
+      <h2 class="section-title">営業カレンダー</h2>
+    </div>
+    <div class="cal-legend">
+      <span class="cal-legend-item"><i class="dot dot-open"></i>営業日</span>
+      <span class="cal-legend-item"><i class="dot dot-closed"></i>定休日</span>
+    </div>
+    <div class="cal-card">
+      <div class="cal-nav">
+        <button type="button" id="calPrev" aria-label="前の月">←</button>
+        <p class="cal-month" id="calMonth"></p>
+        <button type="button" id="calNext" aria-label="次の月">→</button>
+      </div>
+      <div class="cal-weekdays">
+        <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <p class="menu-hint" style="text-align:center;">※基本は月・水・金の営業です。臨時休業がある場合はLINE・Instagramでお知らせします。</p>
   </section>
 
   <section id="gallery" class="reveal">

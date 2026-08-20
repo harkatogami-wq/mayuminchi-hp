@@ -24,6 +24,87 @@ if (navToggle && nav) {
   );
 }
 
+// ===== 営業カレンダー =====
+// 基本の営業日は月・水・金。臨時休業がある日はCLOSED_DATESに"YYYY-MM-DD"で追加してください。
+const OPEN_WEEKDAYS = { 1: "米粉マフィン／ビビンパ丼", 3: "お惣菜パン／豚丼", 5: "お惣菜／Mayuデリ弁当" };
+const CLOSED_DATES = [];
+
+const calMonthEl = document.getElementById("calMonth");
+const calGridEl = document.getElementById("calGrid");
+const calPrevBtn = document.getElementById("calPrev");
+const calNextBtn = document.getElementById("calNext");
+
+if (calMonthEl && calGridEl) {
+  const today = new Date();
+  let viewYear = today.getFullYear();
+  let viewMonth = today.getMonth();
+
+  const toDateKey = (y, m, d) =>
+    `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+
+  function renderCalendar() {
+    calMonthEl.textContent = `${viewYear}年 ${viewMonth + 1}月`;
+    calGridEl.innerHTML = "";
+
+    const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement("div");
+      empty.className = "cal-day empty";
+      calGridEl.appendChild(empty);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement("div");
+      const weekday = new Date(viewYear, viewMonth, d).getDay();
+      const dateKey = toDateKey(viewYear, viewMonth, d);
+      const isClosedOverride = CLOSED_DATES.includes(dateKey);
+      const isOpen = OPEN_WEEKDAYS[weekday] && !isClosedOverride;
+
+      cell.className = "cal-day " + (isOpen ? "is-open" : "is-closed");
+      if (
+        viewYear === today.getFullYear() &&
+        viewMonth === today.getMonth() &&
+        d === today.getDate()
+      ) {
+        cell.classList.add("is-today");
+      }
+
+      const num = document.createElement("span");
+      num.className = "num";
+      num.textContent = d;
+      cell.appendChild(num);
+
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = isOpen ? OPEN_WEEKDAYS[weekday] : isClosedOverride ? "臨時休業" : "定休日";
+      cell.appendChild(tag);
+
+      calGridEl.appendChild(cell);
+    }
+  }
+
+  calPrevBtn?.addEventListener("click", () => {
+    viewMonth -= 1;
+    if (viewMonth < 0) {
+      viewMonth = 11;
+      viewYear -= 1;
+    }
+    renderCalendar();
+  });
+  calNextBtn?.addEventListener("click", () => {
+    viewMonth += 1;
+    if (viewMonth > 11) {
+      viewMonth = 0;
+      viewYear += 1;
+    }
+    renderCalendar();
+  });
+
+  renderCalendar();
+}
+
 // ===== スクロールで表示 =====
 const revealEls = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window && revealEls.length) {
