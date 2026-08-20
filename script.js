@@ -3,6 +3,7 @@
 const LINKS = {
   line: "https://lin.ee/t8ldPA5",  // まゆみんち公式LINE
   instagram: "https://www.instagram.com/oideyo_mayuminchi",  // Instagram
+  googleMap: "https://maps.app.goo.gl/UnhLveZgzyFLobJq7",  // Googleビジネスプロフィール（口コミ・地図）
 };
 
 document.querySelectorAll("[data-link]").forEach((el) => {
