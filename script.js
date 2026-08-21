@@ -64,6 +64,15 @@ const EVENTS = [
     regularOpen: true,
   },
   {
+    date: "2026-09-28",
+    title: "発達相談室ぬくもり",
+    calLabel: "ぬくもり",
+    host: "とがみ はるか（おやこのはぐくみサロン Lien）",
+    time: "10:00〜11:30",
+    link: "https://nukumori-lp.pages.dev/",
+    regularOpen: true,
+  },
+  {
     date: "2026-09-29",
     title: "Half & First Birthday Day（1歳・6ヶ月の記念日イベント）",
     calLabel: "バースデー会",
