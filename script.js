@@ -43,13 +43,21 @@ const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 
 // 貸切スペースでのイベント。
 // title: イベントのお知らせ欄に出す正式名称／calLabel: カレンダーのマスに収まる短い名前(4〜5文字が目安)
+// hosts: [{name, insta}] 主催者(複数可)。instaがあれば名前がInstagramリンクになる
 // regularOpen: その日にまゆみんちの通常営業（テイクアウト等）も一緒に行うか
+const HOST_INSTA = {
+  "とがみ はるか": "https://www.instagram.com/haruka_hagukumi_touch?igsi=ajV5ZXkzajBydjhz&utm_source=qr",
+  "いでさわ まりこ": "https://www.instagram.com/mariko_ramiescrayon?igsi=endjNG9hNmN5OGxs",
+  "宮尾みつみ": "https://www.instagram.com/mitsumi_manpuku?igsi=MWlmdW53eHZ1d3F4Yg==",
+  "中川雅子": "https://www.instagram.com/mako.fit73?igsi=bWM2MmhzdTQ0bWRj",
+};
+
 const EVENTS = [
   {
     date: "2026-09-04",
     title: "朝活",
     calLabel: "朝活",
-    host: "中川雅子",
+    hosts: [{ name: "中川雅子", insta: HOST_INSTA["中川雅子"] }],
     time: "9:00〜",
     link: "https://line.me/R/ti/p/@497ljhlr",
     regularOpen: true,
@@ -58,7 +66,7 @@ const EVENTS = [
     date: "2026-09-18",
     title: "朝活",
     calLabel: "朝活",
-    host: "中川雅子",
+    hosts: [{ name: "中川雅子", insta: HOST_INSTA["中川雅子"] }],
     time: "9:00〜",
     link: "https://line.me/R/ti/p/@497ljhlr",
     regularOpen: true,
@@ -67,7 +75,7 @@ const EVENTS = [
     date: "2026-09-08",
     title: "米粉の抹茶ケーキレッスン（満席）",
     calLabel: "抹茶ケーキ",
-    host: "宮尾みつみ",
+    hosts: [{ name: "宮尾みつみ", insta: HOST_INSTA["宮尾みつみ"] }],
     time: "10:30〜",
     link: "https://lin.ee/93ksoYY",
     regularOpen: false,
@@ -76,7 +84,7 @@ const EVENTS = [
     date: "2026-09-16",
     title: "米粉パン販売",
     calLabel: "パン販売",
-    host: "宮尾みつみ",
+    hosts: [{ name: "宮尾みつみ", insta: HOST_INSTA["宮尾みつみ"] }],
     time: "",
     link: "https://lin.ee/93ksoYY",
     regularOpen: true,
@@ -85,7 +93,7 @@ const EVENTS = [
     date: "2026-09-28",
     title: "発達相談室ぬくもり",
     calLabel: "ぬくもり",
-    host: "とがみ はるか（おやこのはぐくみサロン Lien）",
+    hosts: [{ name: "とがみ はるか（おやこのはぐくみサロン Lien）", insta: HOST_INSTA["とがみ はるか"] }],
     time: "10:00〜11:30",
     link: "https://nukumori-lp.pages.dev/",
     regularOpen: true,
@@ -94,7 +102,10 @@ const EVENTS = [
     date: "2026-09-29",
     title: "Half & First Birthday Day（1歳・6ヶ月の記念日イベント）",
     calLabel: "バースデー会",
-    host: "とがみ はるか × いでさわ まりこ",
+    hosts: [
+      { name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] },
+      { name: "いでさわ まりこ", insta: HOST_INSTA["いでさわ まりこ"] },
+    ],
     time: "10:00〜11:30 1歳の記念日／13:00〜14:30 6ヶ月の記念日",
     link: "https://half-first-birthday-lp.pages.dev",
     regularOpen: false,
@@ -204,19 +215,27 @@ if (calMonthEl && calGridEl) {
     upcoming.forEach((e) => {
       const [y, m, d] = e.date.split("-").map(Number);
       const weekdayLabel = ["日", "月", "火", "水", "木", "金", "土"][new Date(y, m - 1, d).getDay()];
-      const card = document.createElement(e.link ? "a" : "div");
+      const card = document.createElement("div");
       card.className = "event-card";
-      if (e.link) {
-        card.href = e.link;
-        card.target = "_blank";
-        card.rel = "noopener";
-      }
-      const metaLines = [e.host ? `主催：${e.host}` : "", e.time || ""].filter(Boolean);
+
+      const hostsHtml =
+        e.hosts && e.hosts.length
+          ? "主催：" +
+            e.hosts
+              .map((h) =>
+                h.insta
+                  ? `<a href="${h.insta}" target="_blank" rel="noopener" class="ev-host-link">${h.name}</a>`
+                  : h.name
+              )
+              .join(" × ")
+          : "";
+      const metaLines = [hostsHtml, e.time || ""].filter(Boolean);
+
       card.innerHTML = `
         <span class="ev-date">${y}.${m}.${d}（${weekdayLabel}）</span>
         <h4 class="ev-title">${e.title}</h4>
         ${metaLines.length ? `<p class="ev-meta">${metaLines.join("<br>")}</p>` : ""}
-        ${e.link ? '<span class="ev-link">詳細を見る →</span>' : ""}
+        ${e.link ? `<a class="ev-link" href="${e.link}" target="_blank" rel="noopener">詳細を見る →</a>` : ""}
       `;
       eventListEl.appendChild(card);
     });

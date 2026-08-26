@@ -287,6 +287,8 @@ a.cal-day:hover{ opacity:.8; }
 }
 .event-card .ev-title{ font-family:"Shippori Mincho",serif; font-weight:700; font-size:15px; margin:0; color:var(--brown); }
 .event-card .ev-meta{ font-size:12px; color:var(--brown-soft); line-height:1.7; }
+.event-card .ev-host-link{ color:var(--red-deep); font-weight:600; text-decoration:underline; }
+.event-card .ev-host-link:hover{ color:var(--red); }
 .event-card .ev-link{
   align-self:flex-start; margin-top:4px; font-size:12px; font-weight:700; color:var(--red-deep); text-decoration:underline;
 }
