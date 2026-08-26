@@ -46,6 +46,24 @@ const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 // regularOpen: その日にまゆみんちの通常営業（テイクアウト等）も一緒に行うか
 const EVENTS = [
   {
+    date: "2026-09-04",
+    title: "朝活",
+    calLabel: "朝活",
+    host: "中川雅子",
+    time: "9:00〜",
+    link: "https://line.me/R/ti/p/@497ljhlr",
+    regularOpen: true,
+  },
+  {
+    date: "2026-09-18",
+    title: "朝活",
+    calLabel: "朝活",
+    host: "中川雅子",
+    time: "9:00〜",
+    link: "https://line.me/R/ti/p/@497ljhlr",
+    regularOpen: true,
+  },
+  {
     date: "2026-09-08",
     title: "米粉の抹茶ケーキレッスン（満席）",
     calLabel: "抹茶ケーキ",
@@ -193,10 +211,11 @@ if (calMonthEl && calGridEl) {
         card.target = "_blank";
         card.rel = "noopener";
       }
+      const metaLines = [e.host ? `主催：${e.host}` : "", e.time || ""].filter(Boolean);
       card.innerHTML = `
         <span class="ev-date">${y}.${m}.${d}（${weekdayLabel}）</span>
         <h4 class="ev-title">${e.title}</h4>
-        <p class="ev-meta">主催：${e.host}${e.time ? "<br>" + e.time : ""}</p>
+        ${metaLines.length ? `<p class="ev-meta">${metaLines.join("<br>")}</p>` : ""}
         ${e.link ? '<span class="ev-link">詳細を見る →</span>' : ""}
       `;
       eventListEl.appendChild(card);
