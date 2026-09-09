@@ -110,6 +110,24 @@ const EVENTS = [
     link: "https://half-first-birthday-lp.pages.dev",
     regularOpen: false,
   },
+  {
+    date: "2026-10-06",
+    title: "米粉のおやきパンレッスン",
+    calLabel: "おやきパン",
+    hosts: [{ name: "宮尾みつみ", insta: HOST_INSTA["宮尾みつみ"] }],
+    time: "",
+    link: "https://lin.ee/93ksoYY",
+    regularOpen: false,
+  },
+  {
+    date: "2026-10-14",
+    title: "米粉パン販売",
+    calLabel: "パン販売",
+    hosts: [{ name: "宮尾みつみ", insta: HOST_INSTA["宮尾みつみ"] }],
+    time: "",
+    link: "https://lin.ee/93ksoYY",
+    regularOpen: true,
+  },
 ];
 const EVENTS_BY_DATE = Object.fromEntries(EVENTS.map((e) => [e.date, e]));
 
