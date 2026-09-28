@@ -128,6 +128,15 @@ const EVENTS = [
     link: "https://lin.ee/93ksoYY",
     regularOpen: true,
   },
+  {
+    date: "2026-11-12",
+    title: "米粉のおやきパンレッスン",
+    calLabel: "おやきパン",
+    hosts: [{ name: "宮尾みつみ", insta: HOST_INSTA["宮尾みつみ"] }],
+    time: "",
+    link: "https://lin.ee/93ksoYY",
+    regularOpen: false,
+  },
 ];
 const EVENTS_BY_DATE = Object.fromEntries(EVENTS.map((e) => [e.date, e]));
 
