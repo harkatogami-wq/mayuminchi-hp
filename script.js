@@ -129,12 +129,30 @@ const EVENTS = [
     regularOpen: true,
   },
   {
+    date: "2026-10-09",
+    title: "ベビマ🧸ランチ会",
+    calLabel: "ベビマ会",
+    hosts: [{ name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] }],
+    time: "",
+    link: "",
+    regularOpen: true,
+  },
+  {
     date: "2026-10-23",
     title: "朝活",
     calLabel: "朝活",
     hosts: [{ name: "中川雅子", insta: HOST_INSTA["中川雅子"] }],
     time: "9:00〜",
     link: "https://line.me/R/ti/p/@497ljhlr",
+    regularOpen: true,
+  },
+  {
+    date: "2026-10-23",
+    title: "ベビマ🧸ランチ会",
+    calLabel: "ベビマ会",
+    hosts: [{ name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] }],
+    time: "",
+    link: "",
     regularOpen: true,
   },
   {
@@ -165,7 +183,9 @@ const EVENTS = [
     regularOpen: false,
   },
 ];
-const EVENTS_BY_DATE = Object.fromEntries(EVENTS.map((e) => [e.date, e]));
+// 同じ日に複数のイベントがあってもOK（カレンダーのマスに縦に並べて表示）
+const EVENTS_BY_DATE = {};
+EVENTS.forEach((e) => (EVENTS_BY_DATE[e.date] ||= []).push(e));
 
 const calMonthEl = document.getElementById("calMonth");
 const calGridEl = document.getElementById("calGrid");
@@ -200,17 +220,21 @@ if (calMonthEl && calGridEl) {
     for (let d = 1; d <= daysInMonth; d++) {
       const weekday = new Date(viewYear, viewMonth, d).getDay();
       const dateKey = toDateKey(viewYear, viewMonth, d);
-      const event = EVENTS_BY_DATE[dateKey];
+      const dayEvents = EVENTS_BY_DATE[dateKey] || [];
+      const event = dayEvents[0];
+      const eventLabel = dayEvents.map((e) => e.calLabel || "イベント").join("\n");
+      // マスのリンクはイベントが1つだけのときに付ける（複数の日は下のイベント一覧から）
+      const cellLink = dayEvents.length === 1 ? event.link : "";
       const isClosedOverride = CLOSED_DATES.includes(dateKey);
       const isWeekdayCandidate = !!OPEN_WEEKDAYS[weekday];
       let isOpen = monthOpenDays
         ? monthOpenDays.includes(d) && !isClosedOverride
         : isWeekdayCandidate && !isClosedOverride;
-      if (event && !event.regularOpen) isOpen = false;
+      if (dayEvents.some((e) => !e.regularOpen)) isOpen = false;
 
-      const cell = document.createElement(event?.link ? "a" : "div");
-      if (event?.link) {
-        cell.href = event.link;
+      const cell = document.createElement(cellLink ? "a" : "div");
+      if (cellLink) {
+        cell.href = cellLink;
         cell.target = "_blank";
         cell.rel = "noopener";
       }
@@ -232,7 +256,7 @@ if (calMonthEl && calGridEl) {
       const tag = document.createElement("span");
       tag.className = "tag tag-full";
       tag.textContent = event
-        ? event.calLabel || "イベント"
+        ? eventLabel
         : isOpen
         ? OPEN_WEEKDAYS[weekday]
         : isClosedOverride
@@ -243,7 +267,7 @@ if (calMonthEl && calGridEl) {
       const tagShort = document.createElement("span");
       tagShort.className = "tag tag-short";
       tagShort.textContent = event
-        ? event.calLabel || "イベント"
+        ? eventLabel
         : isOpen
         ? OPEN_WEEKDAYS_SHORT[weekday]
         : isClosedOverride
