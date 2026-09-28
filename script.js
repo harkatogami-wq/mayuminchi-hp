@@ -120,6 +120,15 @@ const EVENTS = [
     regularOpen: false,
   },
   {
+    date: "2026-10-10",
+    title: "小西商店 みんなのマルシェに出店",
+    calLabel: "マルシェ",
+    hosts: [{ name: "小西商店", insta: "https://www.instagram.com/konishi_syouten" }],
+    time: "",
+    link: "https://www.instagram.com/konishi_syouten",
+    regularOpen: false,
+  },
+  {
     date: "2026-10-14",
     title: "米粉パン販売",
     calLabel: "パン販売",
