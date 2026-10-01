@@ -50,6 +50,7 @@ const HOST_INSTA = {
   "いでさわ まりこ": "https://www.instagram.com/mariko_ramiescrayon?igsi=endjNG9hNmN5OGxs",
   "宮尾みつみ": "https://www.instagram.com/mitsumi_manpuku?igsi=MWlmdW53eHZ1d3F4Yg==",
   "中川雅子": "https://www.instagram.com/mako.fit73?igsi=bWM2MmhzdTQ0bWRj",
+  "suzu": "https://www.instagram.com/suzu_photo__",
 };
 
 const EVENTS = [
@@ -172,6 +173,15 @@ const EVENTS = [
     time: "",
     link: "https://lin.ee/93ksoYY",
     regularOpen: true,
+  },
+  {
+    date: "2026-10-15",
+    title: "ハロウィンフォトイベント",
+    calLabel: "ハロウィン",
+    hosts: [{ name: "suzu（フォトグラファー）", insta: HOST_INSTA["suzu"] }],
+    time: "10:00〜12:00",
+    link: HOST_INSTA["suzu"],
+    regularOpen: false,
   },
   {
     date: "2026-11-12",
