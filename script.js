@@ -41,6 +41,9 @@ const OPEN_DATES_BY_MONTH = {
 // 臨時休業（本来は営業日だが休む日）は"YYYY-MM-DD"で追加してください。
 const CLOSED_DATES = ["2026-08-10", "2026-08-12", "2026-08-14", "2026-08-28"];
 
+// 予約のみの受付日（営業はするが、当日のふらっと購入はなし）は"YYYY-MM-DD"で追加してください。
+const RESERVATION_ONLY_DATES = ["2026-10-30"];
+
 // 貸切スペースでのイベント。
 // title: イベントのお知らせ欄に出す正式名称／calLabel: カレンダーのマスに収まる短い名前(4〜5文字が目安)
 // hosts: [{name, insta}] 主催者(複数可)。instaがあれば名前がInstagramリンクになる
@@ -94,7 +97,7 @@ const EVENTS = [
     date: "2026-09-28",
     title: "発達相談室ぬくもり",
     calLabel: "ぬくもり",
-    hosts: [{ name: "とがみ はるか（おやこのはぐくみサロン Lien）", insta: HOST_INSTA["とがみ はるか"] }],
+    hosts: [{ name: "とがみ はるか（おやこのはぐくみ教室 Lien）", insta: HOST_INSTA["とがみ はるか"] }],
     time: "10:00〜11:30",
     link: "https://nukumori-lp.pages.dev/",
     regularOpen: true,
@@ -192,6 +195,42 @@ const EVENTS = [
     link: "https://lin.ee/93ksoYY",
     regularOpen: false,
   },
+  {
+    date: "2026-11-08",
+    title: "円蔵寺マルシェに出店",
+    calLabel: "マルシェ",
+    hosts: [],
+    time: "",
+    link: "",
+    regularOpen: false,
+  },
+  {
+    date: "2026-11-11",
+    title: "朝活",
+    calLabel: "朝活",
+    hosts: [{ name: "中川雅子", insta: HOST_INSTA["中川雅子"] }],
+    time: "9:00〜",
+    link: "https://line.me/R/ti/p/@497ljhlr",
+    regularOpen: true,
+  },
+  {
+    date: "2026-11-19",
+    title: "パン屋さんの写真撮影（貸切）",
+    calLabel: "撮影",
+    hosts: [],
+    time: "",
+    link: "",
+    regularOpen: false,
+  },
+  {
+    date: "2026-11-27",
+    title: "朝活",
+    calLabel: "朝活",
+    hosts: [{ name: "中川雅子", insta: HOST_INSTA["中川雅子"] }],
+    time: "9:00〜",
+    link: "https://line.me/R/ti/p/@497ljhlr",
+    regularOpen: true,
+  },
 ];
 // 同じ日に複数のイベントがあってもOK（カレンダーのマスに縦に並べて表示）
 const EVENTS_BY_DATE = {};
@@ -236,6 +275,7 @@ if (calMonthEl && calGridEl) {
       // マスのリンクはイベントが1つだけのときに付ける（複数の日は下のイベント一覧から）
       const cellLink = dayEvents.length === 1 ? event.link : "";
       const isClosedOverride = CLOSED_DATES.includes(dateKey);
+      const isReservationOnly = RESERVATION_ONLY_DATES.includes(dateKey);
       const isWeekdayCandidate = !!OPEN_WEEKDAYS[weekday];
       let isOpen = monthOpenDays
         ? monthOpenDays.includes(d) && !isClosedOverride
@@ -267,6 +307,8 @@ if (calMonthEl && calGridEl) {
       tag.className = "tag tag-full";
       tag.textContent = event
         ? eventLabel
+        : isOpen && isReservationOnly
+        ? "予約のみの受付"
         : isOpen
         ? OPEN_WEEKDAYS[weekday]
         : isClosedOverride
@@ -278,6 +320,8 @@ if (calMonthEl && calGridEl) {
       tagShort.className = "tag tag-short";
       tagShort.textContent = event
         ? eventLabel
+        : isOpen && isReservationOnly
+        ? "予約のみ"
         : isOpen
         ? OPEN_WEEKDAYS_SHORT[weekday]
         : isClosedOverride
