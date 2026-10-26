@@ -217,9 +217,9 @@ const EVENTS = [
     date: "2026-11-19",
     title: "パン屋さんの写真撮影（貸切）",
     calLabel: "撮影",
-    hosts: [],
+    hosts: [{ name: "suzu（フォトグラファー）", insta: HOST_INSTA["suzu"] }],
     time: "",
-    link: "",
+    link: HOST_INSTA["suzu"],
     regularOpen: false,
   },
   {
