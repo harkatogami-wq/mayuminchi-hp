@@ -214,6 +214,18 @@ const EVENTS = [
     regularOpen: true,
   },
   {
+    date: "2026-11-17",
+    title: "Half & First Birthday Day（1歳・6ヶ月の記念日イベント）",
+    calLabel: "バースデー会",
+    hosts: [
+      { name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] },
+      { name: "いでさわ まりこ", insta: HOST_INSTA["いでさわ まりこ"] },
+    ],
+    time: "10:00〜11:30 1歳の記念日／13:00〜14:30 6ヶ月の記念日",
+    link: "https://half-first-birthday-lp.pages.dev",
+    regularOpen: false,
+  },
+  {
     date: "2026-11-19",
     title: "パン屋さんの写真撮影（貸切）",
     calLabel: "撮影",
