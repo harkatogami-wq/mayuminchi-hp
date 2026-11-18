@@ -414,7 +414,9 @@ footer .foot-links a{ font-size:13px; font-weight:700; color:var(--brown); }
 .cal-v2 .cal-day.is-closed .tag{ color:var(--cv-closed); font-weight:500; }
 .cal-v2 .cal-day.is-open{ background:var(--cv-open); }
 .cal-v2 .cal-day.is-open .tag{ color:var(--cv-open-ink); }
-.cal-v2 .cal-day.is-event, .cal-v2 .cal-day.is-event.is-open{ background:var(--cv-event); }
+.cal-v2 .cal-day.is-event{ background:var(--cv-event); }
+/* 営業日とイベントが重なる日は、以前と同じ「ななめ半分ずつ」（左上＝イベントの緑／右下＝営業日のピンク） */
+.cal-v2 .cal-day.is-event.is-open{ background:linear-gradient(135deg, var(--cv-event) 50%, var(--cv-open) 50%); }
 .cal-v2 .cal-day.is-event .tag{ color:var(--cv-event-ink); }
 .cal-v2 .cal-day .ev-ic{ position:absolute; top:3px; right:4px; font-size:14px; line-height:1; }
 .cal-v2 .cal-day.is-today{ outline:2px solid var(--cv-open-ink); outline-offset:-2px; }
