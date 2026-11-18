@@ -424,3 +424,23 @@ if ("IntersectionObserver" in window && revealEls.length) {
 } else {
   revealEls.forEach((el) => el.classList.add("in"));
 }
+
+/* ---------- 米粉マフィンの種類：押すと開く／閉じる ---------- */
+(function(){
+  const btn = document.querySelector('.muffin-toggle');
+  const box = document.getElementById('muffin');
+  if(!btn || !box) return;
+  const OPEN = 'マフィンの種類を閉じる ↑', CLOSED = 'マフィンの種類を見る ↓';
+  function setOpen(open, scroll){
+    box.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? OPEN : CLOSED;
+    if(open){
+      box.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+      if(scroll) box.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  }
+  btn.addEventListener('click', () => setOpen(box.hidden, true));
+  // URLが #muffin のときは開いた状態で表示
+  if(location.hash === '#muffin') setOpen(true, true);
+})();

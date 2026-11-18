@@ -31,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style-dtl.css">
+<link rel="stylesheet" href="style-dtl.css?v=20261118">
 
 <!-- 構造化データ（Google検索でのリッチ表示用） -->
 <script type="application/ld+json">
@@ -217,7 +217,7 @@
             </div>
             <span class="price">¥300</span>
           </div>
-          <span class="note"><a href="#muffin" style="text-decoration:underline;">マフィンの種類を見る ↓</a></span>
+          <span class="note"><button type="button" class="muffin-toggle" aria-expanded="false" aria-controls="muffin">マフィンの種類を見る ↓</button></span>
         </li>
         <li class="menu-item">
           <div class="menu-item-top">
@@ -240,7 +240,7 @@
       </ul>
     </div>
 
-    <div class="menu-group muffin-menu" id="muffin">
+    <div class="menu-group muffin-menu" id="muffin" hidden>
       <div class="menu-group-head">
         <span class="en">Rice-flour Muffins</span>
         <h3>米粉マフィン</h3>
@@ -546,6 +546,6 @@
   <p class="copy">© mayuminchi</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=20261118"></script>
 </body>
 </html>
