@@ -244,6 +244,20 @@ const EVENTS = [
     regularOpen: true,
   },
 ];
+// イベントの小さなアイコン（名前から自動で選ぶ。EVENTS に icon: "🎄" と書けばそちらが優先）
+function eventIcon(e) {
+  if (e.icon) return e.icon;
+  const t = (e.title || "") + (e.calLabel || "");
+  if (/朝活/.test(t)) return "☀️";
+  if (/撮影|フォト|写真/.test(t)) return "📷";
+  if (/バースデー|Birthday|誕生/.test(t)) return "🎂";
+  if (/マルシェ/.test(t)) return "🏠";
+  if (/パン|おやき/.test(t)) return "🍞";
+  if (/ケーキ/.test(t)) return "🍰";
+  if (/ベビマ|ぬくもり|発達/.test(t)) return "🧸";
+  if (/ハロウィン/.test(t)) return "🎃";
+  return "✨";
+}
 // 同じ日に複数のイベントがあってもOK（カレンダーのマスに縦に並べて表示）
 const EVENTS_BY_DATE = {};
 EVENTS.forEach((e) => (EVENTS_BY_DATE[e.date] ||= []).push(e));
@@ -310,10 +324,19 @@ if (calMonthEl && calGridEl) {
         cell.classList.add("is-today");
       }
 
+      if (weekday === 0) cell.classList.add("is-sun");
+      if (weekday === 6) cell.classList.add("is-sat");
       const num = document.createElement("span");
       num.className = "num";
       num.textContent = d;
       cell.appendChild(num);
+      if (event) {
+        const ic = document.createElement("span");
+        ic.className = "ev-ic";
+        ic.setAttribute("aria-hidden", "true");
+        ic.textContent = eventIcon(event);
+        cell.appendChild(ic);
+      }
 
       const tag = document.createElement("span");
       tag.className = "tag tag-full";
@@ -375,11 +398,18 @@ if (calMonthEl && calGridEl) {
           : "";
       const metaLines = [hostsHtml, e.time || ""].filter(Boolean);
 
+      // 写真は EVENTS に image: "images/〇〇.jpg" と書けば出る。なければアイコンの丸い枠
+      const thumb = e.image
+        ? `<img class="ev-thumb" src="${e.image}" alt="" loading="lazy">`
+        : `<span class="ev-thumb ev-thumb-ic" aria-hidden="true">${eventIcon(e)}</span>`;
       card.innerHTML = `
-        <span class="ev-date">${y}.${m}.${d}（${weekdayLabel}）</span>
-        <h4 class="ev-title">${e.title}</h4>
-        ${metaLines.length ? `<p class="ev-meta">${metaLines.join("<br>")}</p>` : ""}
-        ${e.link ? `<a class="ev-link" href="${e.link}" target="_blank" rel="noopener">詳細を見る →</a>` : ""}
+        ${thumb}
+        <div class="ev-body">
+          <span class="ev-date">${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}（${weekdayLabel}）</span>
+          <h4 class="ev-title">${e.title}</h4>
+          ${metaLines.length ? `<p class="ev-meta">${metaLines.join("<br>")}</p>` : ""}
+          ${e.link ? `<a class="ev-link" href="${e.link}" target="_blank" rel="noopener">詳細を見る <span aria-hidden="true">→</span></a>` : ""}
+        </div>
       `;
       eventListEl.appendChild(card);
     });

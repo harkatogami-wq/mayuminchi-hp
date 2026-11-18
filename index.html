@@ -31,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style-dtl.css?v=20261118b">
+<link rel="stylesheet" href="style-dtl.css?v=20261118c">
 
 <!-- 構造化データ（Google検索でのリッチ表示用） -->
 <script type="application/ld+json">
@@ -403,12 +403,14 @@
     </div>
   </section>
 
-  <section id="calendar" class="calendar face-part face-right reveal">
-    <div class="section-head">
-      <p class="section-tag en">Calendar</p>
-      <h2 class="section-title">営業カレンダー</h2>
-      <p class="cal-hours">営業時間 10:00〜15:00</p>
-      <p class="menu-hint" style="margin-top:4px;">※売り切れ次第、終了となります</p>
+  <section id="calendar" class="calendar cal-v2 reveal">
+    <div class="cal-head">
+      <h2 class="cal-title">
+        <svg class="cal-title-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="34" rx="8" fill="#f4a261"/><rect x="5" y="9" width="38" height="11" rx="8" fill="#e76f51"/><rect x="5" y="15" width="38" height="5" fill="#e76f51"/><rect x="13" y="4" width="5" height="10" rx="2.5" fill="#6d4c41"/><rect x="30" y="4" width="5" height="10" rx="2.5" fill="#6d4c41"/><g fill="#fff"><circle cx="15" cy="27" r="2.6"/><circle cx="24" cy="27" r="2.6"/><circle cx="33" cy="27" r="2.6"/><circle cx="15" cy="35" r="2.6"/><circle cx="24" cy="35" r="2.6"/></g></svg>
+        <span class="cal-title-text">営業カレンダー</span>
+      </h2>
+      <p class="cal-sub">まゆみんちの営業日と、開催するイベントや<br>お楽しみの日をチェック！</p>
+      <p class="cal-hours">営業時間 10:00〜15:00 <small>※売り切れ次第、終了となります</small></p>
     </div>
     <div class="cal-legend">
       <span class="cal-legend-item"><i class="dot dot-open"></i>営業日</span>
@@ -422,14 +424,14 @@
         <button type="button" id="calNext" aria-label="次の月">→</button>
       </div>
       <div class="cal-weekdays">
-        <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+        <span class="sun">日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span class="sat">土</span>
       </div>
       <div class="cal-grid" id="calGrid"></div>
     </div>
-    <p class="menu-hint" style="text-align:center;">※基本は月・水・金の営業です。臨時休業がある場合はLINE・Instagramでお知らせします。</p>
+    <p class="menu-hint cal-foot">※基本は月・水・金の営業です。臨時休業がある場合はLINE・Instagramでお知らせします。</p>
 
     <div class="event-notice">
-      <h3 class="event-notice-title">イベントのお知らせ</h3>
+      <h3 class="event-notice-title"><span>イベントのお知らせ</span></h3>
       <p class="event-notice-sub">貸切スペースを使って、いろんな方がイベントを開催しています。</p>
       <div class="event-list" id="eventList"></div>
     </div>
@@ -570,6 +572,6 @@
   <p class="copy">© mayuminchi</p>
 </footer>
 
-<script src="script.js?v=20261118"></script>
+<script src="script.js?v=20261118c"></script>
 </body>
 </html>

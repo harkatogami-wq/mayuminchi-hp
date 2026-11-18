@@ -338,3 +338,134 @@ footer .foot-links a{ font-size:13px; font-weight:700; color:var(--brown); }
 .muffin-menu{ scroll-margin-top:110px; }
 .muffin-menu:not([hidden]){ animation:muffinOpen .4s ease; }
 @keyframes muffinOpen{ from{ opacity:0; transform:translateY(-8px); } to{ opacity:1; transform:none; } }
+
+/* ---------- 営業カレンダー（2026-11-18 見本画像の形に） ---------- */
+.cal-v2{
+  --cv-bg:#fdf5ea; --cv-card:#fffdf9; --cv-accent:#ef8a4c; --cv-accent-soft:#fde4cf;
+  --cv-open:#fbe1de; --cv-open-ink:#d04a3c; --cv-event:#e3f0d6; --cv-event-ink:#4f8a3a;
+  --cv-sun:#d04a3c; --cv-sat:#3b78b8; --cv-closed:#9a918a;
+}
+:root[data-theme="dark"] .cal-v2{ --cv-bg:#25201b; --cv-card:#2c2620; --cv-accent:#f29a62; --cv-accent-soft:#4a3426; --cv-open:#4a2a26; --cv-open-ink:#f2958a; --cv-event:#2f3d27; --cv-event-ink:#a6d48e; --cv-sun:#f2958a; --cv-sat:#8db8e6; --cv-closed:#8f867e; }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .cal-v2{ --cv-bg:#25201b; --cv-card:#2c2620; --cv-accent:#f29a62; --cv-accent-soft:#4a3426; --cv-open:#4a2a26; --cv-open-ink:#f2958a; --cv-event:#2f3d27; --cv-event-ink:#a6d48e; --cv-sun:#f2958a; --cv-sat:#8db8e6; --cv-closed:#8f867e; }
+}
+/* 背景：やさしいクリーム色の面（端から端まで） */
+.cal-v2::before{
+  content:""; position:absolute; z-index:-1; top:0; bottom:0;
+  left:calc(50% - 50vw); right:calc(50% - 50vw); background:var(--cv-bg); opacity:1;
+}
+/* 見出し */
+.cal-head{ text-align:center; margin:0 0 26px; }
+.cal-title{ display:inline-flex; align-items:center; gap:12px; margin:0; font-size:clamp(26px,4vw,36px); font-weight:700; letter-spacing:.06em; position:relative; }
+.cal-title-ic{ width:clamp(38px,5vw,48px); height:auto; transform:rotate(-8deg); }
+.cal-title-text{ background:linear-gradient(transparent 62%, var(--cv-accent-soft) 62%); padding:0 4px; }
+.cal-title::after{
+  content:""; position:absolute; right:-26px; top:-6px; width:20px; height:20px;
+  background:
+    linear-gradient(var(--cv-accent),var(--cv-accent)) 50% 0/3px 8px no-repeat,
+    linear-gradient(var(--cv-accent),var(--cv-accent)) 100% 60%/8px 3px no-repeat,
+    linear-gradient(var(--cv-accent),var(--cv-accent)) 0 100%/3px 7px no-repeat;
+  transform:rotate(18deg); opacity:.9;
+}
+.cal-sub{ margin:12px 0 0; font-size:14px; line-height:1.8; color:var(--brown-soft); font-weight:700; }
+.cal-v2 .cal-hours{ margin:10px 0 0; font-size:13px; color:var(--brown); }
+.cal-v2 .cal-hours small{ display:block; font-size:11.5px; color:var(--brown-faint); font-weight:500; }
+/* 凡例：白い丸ピルに3つ */
+.cal-v2 .cal-legend{
+  display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin:0 auto 18px; width:fit-content;
+  background:var(--cv-card); border-radius:100px; padding:8px 22px; font-size:13px; font-weight:700;
+}
+.cal-v2 .cal-legend .dot{ width:11px; height:11px; }
+.cal-v2 .dot-open{ background:var(--cv-open-ink); }
+.cal-v2 .dot-closed{ background:#c9c2bb; opacity:1; }
+.cal-v2 .dot-event{ background:#8cc26d; }
+/* カレンダーの白いカード */
+.cal-v2 .cal-card{
+  background:var(--cv-card); box-shadow:none; border:none; border-radius:24px;
+  padding:22px 20px 18px; max-width:760px; margin:0 auto;
+}
+.cal-v2 .cal-nav{ margin-bottom:14px; }
+.cal-v2 .cal-nav button{
+  width:42px; height:42px; border-radius:50%; background:var(--cv-accent); color:#fff;
+  border:none; font-size:18px; font-weight:700; cursor:pointer; transition:.3s ease;
+}
+.cal-v2 .cal-nav button:hover{ background:var(--cv-open-ink); color:#fff; transform:scale(1.05); }
+.cal-v2 .cal-month{
+  background:var(--cv-accent-soft); border-radius:100px; padding:6px 30px; margin:0;
+  font-size:20px; font-weight:700; letter-spacing:.06em; font-family:"Noto Sans JP",sans-serif !important;
+}
+.cal-v2 .cal-weekdays{ font-size:13px; font-weight:700; color:var(--brown); margin-bottom:6px; }
+.cal-v2 .cal-weekdays .sun{ color:var(--cv-sun); }
+.cal-v2 .cal-weekdays .sat{ color:var(--cv-sat); }
+.cal-v2 .cal-grid{ gap:6px; }
+/* 日にちのマス */
+.cal-v2 .cal-day{
+  position:relative; aspect-ratio:auto; min-width:0; border-radius:12px; min-height:68px; padding:6px 2px 6px;
+  background:transparent; text-decoration:none; color:var(--brown);
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:2px;
+  transition:transform .2s ease;
+}
+.cal-v2 a.cal-day:hover{ transform:translateY(-2px); }
+.cal-v2 .cal-day .num{ font-size:17px; font-weight:700; line-height:1.3; }
+.cal-v2 .cal-day.is-sun .num{ color:var(--cv-sun); }
+.cal-v2 .cal-day.is-sat .num{ color:var(--cv-sat); }
+.cal-v2 .cal-day .tag{ font-size:10px; font-weight:700; line-height:1.25; }
+.cal-v2 .cal-day.is-closed{ background:transparent; }
+.cal-v2 .cal-day.is-closed .tag{ color:var(--cv-closed); font-weight:500; }
+.cal-v2 .cal-day.is-open{ background:var(--cv-open); }
+.cal-v2 .cal-day.is-open .tag{ color:var(--cv-open-ink); }
+.cal-v2 .cal-day.is-event, .cal-v2 .cal-day.is-event.is-open{ background:var(--cv-event); }
+.cal-v2 .cal-day.is-event .tag{ color:var(--cv-event-ink); }
+.cal-v2 .cal-day .ev-ic{ position:absolute; top:3px; right:4px; font-size:14px; line-height:1; }
+.cal-v2 .cal-day.is-today{ outline:2px solid var(--cv-open-ink); outline-offset:-2px; }
+.cal-v2 .cal-foot{ text-align:center; margin-top:14px; }
+@media (max-width:480px){
+  .cal-v2 .cal-card{ padding:16px 8px 12px; border-radius:18px; }
+  .cal-v2 .cal-grid{ gap:4px; }
+  .cal-v2 .cal-day{ min-height:56px; border-radius:10px; padding:4px 1px; }
+  .cal-v2 .cal-day .num{ font-size:15px; }
+  .cal-v2 .cal-day .tag-short{ font-size:9px; letter-spacing:0; line-height:1.2; white-space:pre-line; word-break:break-all; max-width:100%; }
+  .cal-v2 .cal-day .ev-ic{ font-size:11px; top:2px; right:2px; }
+  .cal-v2 .cal-month{ font-size:17px; padding:5px 20px; }
+  .cal-v2 .cal-nav button{ width:36px; height:36px; font-size:16px; }
+  .cal-v2 .cal-legend{ gap:12px; padding:7px 16px; font-size:12px; }
+  .cal-title::after{ right:-20px; }
+}
+/* イベントのお知らせ */
+.cal-v2 .event-notice{ margin-top:56px; text-align:center; }
+.cal-v2 .event-notice-title{
+  display:inline-flex; align-items:center; gap:14px; font-size:22px; font-weight:700; letter-spacing:.06em; margin:0 0 6px;
+}
+.cal-v2 .event-notice-title::before, .cal-v2 .event-notice-title::after{
+  content:""; width:22px; height:14px;
+  background:
+    linear-gradient(var(--cv-accent),var(--cv-accent)) 0 0/3px 9px no-repeat,
+    linear-gradient(var(--cv-accent),var(--cv-accent)) 8px 3px/3px 11px no-repeat,
+    linear-gradient(var(--cv-accent),var(--cv-accent)) 16px 0/3px 9px no-repeat;
+}
+.cal-v2 .event-notice-title::before{ transform:rotate(-20deg); }
+.cal-v2 .event-notice-title::after{ transform:scaleX(-1) rotate(-20deg); }
+.cal-v2 .event-notice-sub{ margin:0 0 22px; }
+.cal-v2 .event-list{ display:flex; flex-direction:column; gap:14px; max-width:760px; margin:0 auto; text-align:left; }
+.cal-v2 .event-card{
+  display:flex; flex-direction:row; gap:18px; align-items:center; background:var(--cv-card); border:none;
+  border-radius:20px; padding:14px; box-shadow:none;
+}
+.cal-v2 .ev-thumb{ width:132px; height:100px; flex-shrink:0; border-radius:14px; object-fit:cover; }
+.cal-v2 .ev-thumb-ic{ display:grid; place-items:center; background:var(--cv-accent-soft); font-size:40px; }
+.cal-v2 .ev-body{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.cal-v2 .event-card .ev-date{ color:var(--cv-event-ink); font-size:13px; font-weight:700; letter-spacing:.03em; }
+.cal-v2 .event-card .ev-title{ font-size:17px; font-weight:700; line-height:1.5; }
+.cal-v2 .event-card .ev-meta{ font-size:12.5px; line-height:1.7; margin:2px 0 0; }
+.cal-v2 .event-card .ev-link{
+  align-self:flex-start; margin-top:8px; display:inline-flex; align-items:center; gap:8px;
+  border:1.5px solid var(--cv-accent); color:var(--cv-accent); background:transparent; border-radius:100px;
+  padding:5px 18px; font-size:13px; font-weight:700; text-decoration:none; transition:.3s ease;
+}
+.cal-v2 .event-card .ev-link:hover{ background:var(--cv-accent); color:#fff; }
+@media (max-width:520px){
+  .cal-v2 .event-card{ gap:12px; padding:12px; }
+  .cal-v2 .ev-thumb{ width:96px; height:84px; }
+  .cal-v2 .ev-thumb-ic{ font-size:32px; }
+  .cal-v2 .event-card .ev-title{ font-size:15px; }
+}
