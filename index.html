@@ -31,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style-dtl.css?v=20261118">
+<link rel="stylesheet" href="style-dtl.css?v=20261118b">
 
 <!-- 構造化データ（Google検索でのリッチ表示用） -->
 <script type="application/ld+json">
@@ -366,15 +366,40 @@
 
     <div class="menu-reserve">
       <h3>完全予約制メニュー</h3>
-      <p>大人8名前後お入りいただける貸切スペースをご利用いただけます。</p>
-      <ul class="reserve-menu-list">
-        <li><span>Mayuデリランチプレート（プチデザート・ワンドリンク付き）</span><span class="price">¥1,600</span></li>
-        <li><span>キッズBOX</span><span class="price">¥500</span></li>
-        <li><span>キッズプレート</span><span class="price">¥500</span></li>
+      <p class="reserve-lead">大人8名前後でご利用いただける貸切スペース。<br>お友達やご家族とのランチにどうぞ。</p>
+
+      <div class="reserve-box">
+        <p class="reserve-box-title">ランチメニュー</p>
+        <div class="reserve-main">
+          <div class="reserve-row">
+            <span class="reserve-name">Mayuデリランチプレート</span>
+            <span class="reserve-price is-main">¥1,600</span>
+          </div>
+          <p class="reserve-sub">プチデザート・ワンドリンク付き</p>
+        </div>
+        <div class="reserve-row">
+          <span class="reserve-name">キッズBOX</span>
+          <span class="reserve-price">¥500</span>
+        </div>
+        <div class="reserve-row">
+          <span class="reserve-name">キッズプレート</span>
+          <span class="reserve-price">¥500</span>
+        </div>
+      </div>
+
+      <p class="reserve-scene-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>
+        こんなご予約に <span class="heart" aria-hidden="true">♡</span>
+      </p>
+      <ul class="reserve-scenes">
+        <li><span class="ic" aria-hidden="true">👭</span>ママ友ランチ</li>
+        <li><span class="ic" aria-hidden="true">🎂</span>お誕生日会</li>
+        <li><span class="ic" aria-hidden="true">👨‍👩‍👧</span>家族の集まり</li>
+        <li><span class="ic" aria-hidden="true">🌷</span>お友達との会食</li>
       </ul>
-      <a class="btn btn-primary" data-link="line" href="#" style="background:var(--badge-fg);color:var(--red-deep);border-color:var(--badge-fg);">
-        予約について問い合わせる
-      </a>
+      <p class="reserve-note">※利用シーンの例です。対応可能な内容はご相談ください。</p>
+
+      <a class="reserve-btn" data-link="line" href="#">予約・相談する <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 
