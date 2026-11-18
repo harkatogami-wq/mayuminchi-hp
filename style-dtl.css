@@ -280,3 +280,9 @@ footer .foot-links a{ font-size:13px; font-weight:700; color:var(--brown); }
   .hero-flow-track{ animation:none; }
   .hero-flow{ overflow-x:auto; }
 }
+.muffin-sub{ display:flex; align-items:center; gap:12px; font-size:17px; font-weight:700; margin:40px 0 16px; letter-spacing:.05em; }
+.muffin-sub:first-of-type{ margin-top:8px; }
+.muffin-sub-tag{ background:var(--red); color:#fff; border-radius:100px; padding:3px 14px; font-size:12px; letter-spacing:.08em; }
+.muffin-sub-tag.is-season{ background:var(--event-deep); }
+.muffin-always{ list-style:none; margin:0 0 24px; padding:0; display:flex; flex-wrap:wrap; gap:8px 10px; }
+.muffin-always li{ background:var(--foot-bg); border-radius:100px; padding:6px 16px; font-size:13.5px; font-weight:700; letter-spacing:.03em; }
