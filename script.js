@@ -138,7 +138,7 @@ const EVENTS = [
     calLabel: "ベビマ会",
     hosts: [{ name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] }],
     time: "10:30〜12:30",
-    link: "https://utage-system.com/p/iQUtviWGv0vh",
+    link: "https://bebima-lunch-lp.pages.dev/",
     regularOpen: true,
   },
   {
@@ -156,7 +156,7 @@ const EVENTS = [
     calLabel: "ベビマ会",
     hosts: [{ name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] }],
     time: "10:30〜12:30",
-    link: "https://utage-system.com/p/iQUtviWGv0vh",
+    link: "https://bebima-lunch-lp.pages.dev/",
     regularOpen: true,
   },
   {
