@@ -235,6 +235,15 @@ const EVENTS = [
     regularOpen: false,
   },
   {
+    date: "2026-12-14",
+    title: "ベビマ🧸ランチ会",
+    calLabel: "ベビマ会",
+    hosts: [{ name: "とがみ はるか", insta: HOST_INSTA["とがみ はるか"] }],
+    time: "10:30〜12:30",
+    link: "https://bebima-lunch-lp.pages.dev/",
+    regularOpen: true,
+  },
+  {
     date: "2026-12-03",
     title: "米粉おやつとデカフェのペアリング体験会（デカフェのmariさんとコラボ）",
     calLabel: "ペアリング",
